@@ -434,7 +434,7 @@ static const CGFloat SVProgressHUDRingThickness = 6;
         NSEnumerator *frontToBackWindows = [[[UIApplication sharedApplication]windows]reverseObjectEnumerator];
         
         for (UIWindow *window in frontToBackWindows)
-            if (window.windowLevel == UIWindowLevelNormal) {
+            if (window.windowLevel < UIWindowLevelAlert) {
                 [window addSubview:self.hudView];
                 break;
             }
