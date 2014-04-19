@@ -467,9 +467,9 @@ static const CGFloat SVProgressHUDParallaxDepthPoints = 10;
     
     if(!self.overlayView.superview){
         NSEnumerator *frontToBackWindows = [[[UIApplication sharedApplication]windows]reverseObjectEnumerator];
-        
+        UIWindow *keyWindow = [UIApplication sharedApplication].keyWindow;
         for (UIWindow *window in frontToBackWindows)
-            if (window.windowLevel < UIWindowLevelAlert) {
+            if (window.windowLevel < UIWindowLevelAlert && !window.hidden && CGRectIntersectsRect(keyWindow.frame, [window convertRect:window.frame toWindow:keyWindow])) {
                 [window addSubview:self.overlayView];
                 break;
             }
